@@ -1,43 +1,52 @@
 def map_category_to_recycling_type(category):
-    """
-    Mappe une catégorie API (en français ou anglais) à un type de déchet spécifique.
-    """
     category = category.lower()
 
-    # Recyclables (emballages, papier/carton)
+    # Recyclables
     if any(keyword in category for keyword in [
-        "plastique", "carton", "papier", "emballage", "bouteille", "canette", "alu", "aluminium",
-        "plastic", "cardboard", "paper", "packaging", "bottle", "can", "aluminum"
+        "plastic bottles", "plastic containers", "cardboard", "paperboard", "papers",
+        "newspapers", "magazines", "flyers", "envelopes", "tin cans", "aluminum cans",
+        "food cartons", "beverage cartons", "metal boxes", "recyclable plastic films",
+        "recyclable plastic bags", "empty aerosol cans", "aluminum trays", "cardboard packaging",
+        "non-plastic coated gift wrap", "clean aluminum foil"
     ]):
         return "Recyclables"
 
-    # Compost (déchets organiques)
+    # Compostable
     elif any(keyword in category for keyword in [
-        "organique", "alimentaire", "compost", "déchet de cuisine", "fruits", "légumes", "épluchures",
-        "organic", "food waste", "compostable", "kitchen waste", "fruits", "vegetables", "peelings"
+        "fruit peels", "vegetable peels", "food scraps", "coffee grounds", "tea bags",
+        "eggshells", "stale bread", "spoiled fruits", "spoiled vegetables", "wilted flowers",
+        "paper tissues", "paper towels", "dead leaves", "grass clippings", "small branches",
+        "wood sawdust", "straw", "hay", "cooled wood ashes"
     ]):
-        return "Compost"
+        return "Compostable"
 
-    # Verre
+    # Glass
     elif any(keyword in category for keyword in [
-        "verre", "bocal", "bouteille en verre", "pot",
-        "glass", "jar", "glass bottle", "container"
+        "glass bottles", "jars", "perfume bottles", "glass oil bottles", "glass yogurt pots",
+        "jam jars", "wine bottles", "spirits bottles", "medicine glass bottles"
     ]):
-        return "Verre"
+        return "Glass"
 
-    # Ordures ménagères
+    # General Waste
     elif any(keyword in category for keyword in [
-        "ordures ménagères", "non recyclable", "déchet général", "restes",
-        "household waste", "non-recyclable", "general waste", "leftovers"
+        "soiled packaging", "diapers", "hygiene items", "broken dishes", "broken mirrors",
+        "filament light bulbs", "vacuum cleaner bags", "used pens", "chewing gum", "cigarette butts",
+        "disposable masks", "disposable gloves", "non-recyclable packaging", "soiled aluminum foil",
+        "styrofoam containers", "non-recyclable hard plastic", "broken ceramics",
+        "used tissues", "used napkins"
     ]):
-        return "Ordures ménagères"
+        return "General Waste"
 
-    # Déchets spéciaux (piles, électronique)
+    # Special Waste
     elif any(keyword in category for keyword in [
-        "pile", "batterie", "électronique", "électroménager", "téléphone", "ordinateur", "déchet dangereux",
-        "battery", "electronics", "appliance", "phone", "computer", "hazardous waste"
+        "batteries", "electronic devices", "energy-saving bulbs", "leds", "expired medications",
+        "chemical products", "paints", "solvents", "motor oil", "ink cartridges", "x-rays",
+        "fluorescent tubes", "mercury thermometers", "pesticides", "insecticides", "car batteries",
+        "electrical equipment", "mobile phones", "computers", "tablets", "small appliances",
+        "cds", "dvds", "printer toners", "hazardous diy products", "electronic toys", "power banks",
+        "cables", "chargers"
     ]):
-        return "Déchets spéciaux"
+        return "Special Waste"
 
-    # Par défaut, catégorie inconnue
+    # Default
     return "Autre"
