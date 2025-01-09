@@ -1,5 +1,6 @@
 def map_category_to_recycling_type(category):
     category = category.lower()
+    unknown_categories_file = "unknown_categories.txt"  # Fichier pour collecter les catégories inconnues
 
     # Recyclables
     if any(keyword in category for keyword in [
@@ -13,10 +14,8 @@ def map_category_to_recycling_type(category):
 
     # Compostable
     elif any(keyword in category for keyword in [
-        "fruit peels", "vegetable peels", "food scraps", "coffee grounds", "tea bags",
-        "eggshells", "stale bread", "spoiled fruits", "spoiled vegetables", "wilted flowers",
-        "paper tissues", "paper towels", "dead leaves", "grass clippings", "small branches",
-        "wood sawdust", "straw", "hay", "cooled wood ashes"
+        "tea", "infusions", "coffee grounds", "tea bags", "fruit peels", "vegetable peels",
+        "food scraps", "organic", "compostable"
     ]):
         return "Compostable"
 
@@ -39,14 +38,16 @@ def map_category_to_recycling_type(category):
 
     # Special Waste
     elif any(keyword in category for keyword in [
-        "batteries", "electronic devices", "energy-saving bulbs", "leds", "expired medications",
-        "chemical products", "paints", "solvents", "motor oil", "ink cartridges", "x-rays",
-        "fluorescent tubes", "mercury thermometers", "pesticides", "insecticides", "car batteries",
-        "electrical equipment", "mobile phones", "computers", "tablets", "small appliances",
-        "cds", "dvds", "printer toners", "hazardous diy products", "electronic toys", "power banks",
-        "cables", "chargers"
+        "battery", "electronics", "motor vehicle", "vehicle parts", "oil", "engine", "tires",
+        "brake", "hazardous", "chemical products", "paints", "solvents", "ink cartridges",
+        "pesticides", "insecticides", "car batteries", "mobile phones", "computers", "tablets",
+        "small appliances", "cds", "dvds", "printer toners", "fluorescent tubes", "mercury thermometers"
     ]):
         return "Special Waste"
 
-    # Default
+    # Enregistrer les catégories inconnues pour analyse future
+    with open(unknown_categories_file, "a") as file:
+        file.write(f"{category}\n")
+
+    # Par défaut, retourner "Autre"
     return "Autre"
